@@ -33,4 +33,4 @@ if __name__ == '__main__':
     model = kn(7)
     model.fit(X_train, Y_train)
     pred = model.predict(X_test)
-    accuracy(pred, Y_test, string = True)
+    accuracy(pred, Y_test, output = True)
