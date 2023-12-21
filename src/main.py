@@ -14,7 +14,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(
     data['data'], data['target'], test_size = 0.3, random_state = 0)
 
 
-def accuracy(ypred:np.ndarray, y:np.ndarray, string:bool = False):
+def accuracy(ypred:np.ndarray, y:np.ndarray, output:bool = False):
     """
     Computing the accuracy
     """
@@ -22,9 +22,8 @@ def accuracy(ypred:np.ndarray, y:np.ndarray, string:bool = False):
 
     # Computing accuracy
     acc = np.sum(ypred == y) / y.shape[0]
-    if string:
-        print(f'Accuracy = {100 * acc:.3f}%')
-        return
+    if output:
+        return print(f'Accuracy = {100 * acc:.2f}%')
     return acc
 
 
