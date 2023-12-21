@@ -11,7 +11,7 @@ from knn import kNN as kn
 # Loading IRIS data set
 data = load_iris()
 X_train, X_test, Y_train, Y_test = train_test_split(
-    data['data'], data['target'], test_size = 0.3, random_state = 0)
+    data['data'], data['target'], test_size = 0.3, random_state = 0)    
 
 
 def accuracy(ypred:np.ndarray, y:np.ndarray, output:bool = False):
