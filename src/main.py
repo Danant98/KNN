@@ -15,7 +15,11 @@ data = load_iris()
 X_train, X_test, Y_train, Y_test = train_test_split(
     data['data'], data['target'], test_size = 0.3, random_state = 0)    
 
-print(within_scatter(X_train, Y_train))
+# Computing the scatter matrices and the J3 score
+Sw = within_scatter(X_train, Y_train)
+Sb = between_scatter(X_train, Y_train)
+score = J3(Sw, Sb)
+print(score)
 exit()
 
 

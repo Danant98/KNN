@@ -23,7 +23,7 @@ def within_scatter(X:np.ndarray, Y:np.ndarray):
         prob = X_c.shape[0] / X.shape[0]
         
         # Computing the covariance matrix 
-        X_cov = np.cov(X_c)
+        X_cov = np.cov(X_c.T)
 
         # Add to the overall scatter matrix
         Sw += prob * X_cov
@@ -61,14 +61,18 @@ def between_scatter(X:np.ndarray, Y:np.ndarray):
         
         # Computing class mean and add to scatter matrix
         mean_c = np.mean(X_c, axis = 0)
-        Sb += prob * ((mean_c - glob_mean).dot((mean_c - glob_mean)))
+        diff = (mean_c - glob_mean).reshape(X.shape[1], 1)
+        Sb += prob * ((diff).dot(diff.T))
     
     return Sb
 
 
 
-def J3():
+def J3(Sw:np.ndarray, Sb:np.ndarray):
     """
     Computing the J3 score given a data set with n features
     """
+    Sm = Sw + Sb
+    score = np.matrix.trace(np.linalg.inv(Sw).dot(Sm))
+    return score
     
