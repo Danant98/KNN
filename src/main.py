@@ -7,11 +7,16 @@ import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from knn import kNN as kn
+from util import within_scatter, between_scatter, J3
+
 
 # Loading IRIS data set
 data = load_iris()
 X_train, X_test, Y_train, Y_test = train_test_split(
     data['data'], data['target'], test_size = 0.3, random_state = 0)    
+
+print(within_scatter(X_train, Y_train))
+exit()
 
 
 def accuracy(ypred:np.ndarray, y:np.ndarray, output:bool = False):
