@@ -5,6 +5,17 @@ __author__ = 'Daniel Elisabethsønn Antonsen, UiT Institute of statistics and ma
 # Importing libraries and modules
 import numpy as np
 
+def accuracy(ypred:np.ndarray, y:np.ndarray, output:bool = False):
+    """
+    Computing the accuracy
+    """
+    assert len(ypred) == len(y), 'predicted labels and ground truth must be of equal length'
+
+    # Computing accuracy
+    acc = np.sum(ypred == y) / y.shape[0]
+    if output:
+        return print(f'Accuracy = {acc:.3f}')
+    return acc
 
 def within_scatter(X:np.ndarray, Y:np.ndarray):
     """
@@ -29,7 +40,6 @@ def within_scatter(X:np.ndarray, Y:np.ndarray):
         Sw += prob * X_cov
     
     return Sw
-
 
 
 def between_scatter(X:np.ndarray, Y:np.ndarray):
@@ -65,8 +75,6 @@ def between_scatter(X:np.ndarray, Y:np.ndarray):
         Sb += prob * ((diff).dot(diff.T))
     
     return Sb
-
-
 
 def J3(Sw:np.ndarray, Sb:np.ndarray):
     """
